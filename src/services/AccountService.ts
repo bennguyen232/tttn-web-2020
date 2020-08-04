@@ -1,6 +1,6 @@
-import { AccountGateway } from "../gateways";
-import { LoginCredentials, LoginUser, SignUp, ChangePassword } from "../models";
-import { checkValidates, CheckValidation, TypesCheck } from "../utilities";
+import {AccountGateway} from '../gateways';
+import {LoginCredentials, LoginUser, SignUp, ChangePassword} from '../models';
+import {checkValidates, CheckValidation, TypesCheck} from '../utilities';
 
 export class AccountService {
   [x: string]: any;
@@ -12,14 +12,14 @@ export class AccountService {
 
   async login(loginForm: LoginCredentials) {
     checkValidates(loginForm, settingValidateLogin);
-    const { token } = await this.accountGateway.login(loginForm);
+    const {token} = await this.accountGateway.login(loginForm);
     await this.accountGateway.useAndSaveAccessToken(token);
     return this.accountGateway.getLoginUser();
   }
 
   async logout() {
     await this.accountGateway.logout();
-    await this.accountGateway.useAndSaveAccessToken("");
+    await this.accountGateway.useAndSaveAccessToken('');
   }
 
   signUp(signUpForm: SignUp) {
@@ -35,40 +35,40 @@ export class AccountService {
     return this.accountGateway.edit(userForm);
   }
 
-  uploadFile(file: Object): Promise<Object | null> {
+  uploadFile(file: any): Promise<any> {
     return this.accountGateway.upload(file);
   }
 
-  forgotPassword(email: string): Promise<Object | null> {
+  forgotPassword(email: string): Promise<any> {
     return this.accountGateway.forgotPassword(email);
   }
 
-  changePassword(data: ChangePassword): Promise<Object | null> {
+  changePassword(data: ChangePassword): Promise<any> {
     return this.accountGateway.changePassword(data);
   }
 }
 
 const settingValidateLogin: CheckValidation<LoginCredentials>[] = [
   {
-    key: "email",
+    key: 'email',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "Email is required",
+        messenger: 'Email is required',
       },
       {
         key: TypesCheck.regex,
-        messenger: "Email must be valid",
+        messenger: 'Email must be valid',
         regex: new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
       },
     ],
   },
   {
-    key: "password",
+    key: 'password',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "Password is required",
+        messenger: 'Password is required',
       },
     ],
   },
@@ -76,43 +76,43 @@ const settingValidateLogin: CheckValidation<LoginCredentials>[] = [
 
 const settingValidateSignUp: CheckValidation<SignUp>[] = [
   {
-    key: "firstName",
+    key: 'firstName',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "First name is required",
+        messenger: 'First name is required',
       },
     ],
   },
   {
-    key: "lastName",
+    key: 'lastName',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "Last name is required",
+        messenger: 'Last name is required',
       },
     ],
   },
   {
-    key: "email",
+    key: 'email',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "Email is required",
+        messenger: 'Email is required',
       },
       {
         key: TypesCheck.regex,
-        messenger: "Email must be valid",
+        messenger: 'Email must be valid',
         regex: new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
       },
     ],
   },
   {
-    key: "password",
+    key: 'password',
     types: [
       {
         key: TypesCheck.require,
-        messenger: "Password is required",
+        messenger: 'Password is required',
       },
     ],
   },

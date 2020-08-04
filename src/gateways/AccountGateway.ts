@@ -1,12 +1,12 @@
-import { AxiosInstance } from "axios";
+import {AxiosInstance} from 'axios';
 import {
   LoginCredentials,
   LoginUser,
   SignUp,
   ResultAccount,
   ChangePassword,
-} from "../models/Account";
-import { SlowFetch } from "../utilities";
+} from '../models/Account';
+import {SlowFetch} from '../utilities';
 
 export class AccountGateway {
   private restConnector: AxiosInstance;
@@ -15,15 +15,15 @@ export class AccountGateway {
     this.restConnector = restConnector;
   }
 
-  async login(loginForm: LoginCredentials): Promise<{ token: string }> {
+  async login(loginForm: LoginCredentials): Promise<{token: string}> {
     try {
-      const { data }: any = await SlowFetch(
-        this.restConnector.post("/accounts/login", loginForm)
+      const {data}: any = await SlowFetch(
+        this.restConnector.post('/accounts/login', loginForm),
       );
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        return { token: "" };
+        return {token: ''};
       }
       throw error;
     }
@@ -31,8 +31,8 @@ export class AccountGateway {
 
   async signUp(signUpForm: SignUp): Promise<ResultAccount> {
     try {
-      const { data }: any = await SlowFetch(
-        this.restConnector.post("/accounts/signup", signUpForm)
+      const {data}: any = await SlowFetch(
+        this.restConnector.post('/accounts/signup', signUpForm),
       );
       return data;
     } catch (error) {
@@ -48,11 +48,11 @@ export class AccountGateway {
   async getLoginUser(): Promise<ResultAccount | null> {
     try {
       const accessToken: string | null = await this._loadAccessToken();
-      if (!accessToken || accessToken === "") {
+      if (!accessToken || accessToken === '') {
         return null;
       }
       this.restConnector.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-      const { data } = await this.restConnector.get("/accounts/me");
+      const {data} = await this.restConnector.get('/accounts/me');
       return data;
     } catch (e) {
       if (e.response && e.response.status === 401) {
@@ -89,13 +89,13 @@ export class AccountGateway {
 
   public async upload(file: any) {
     const formData = new FormData();
-    formData.append("files", file);
+    formData.append('files', file);
     const options = {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {'Content-Type': 'multipart/form-data'},
     };
     try {
       const data = await SlowFetch(
-        this.restConnector.post("/accounts/upload-image", formData, options)
+        this.restConnector.post('/accounts/upload-image', formData, options),
       );
       return data;
     } catch (e) {
@@ -105,15 +105,15 @@ export class AccountGateway {
 
   public async forgotPassword(email: string) {
     return await SlowFetch(
-      this.restConnector.post("/accounts/send-email-reset-password", {
+      this.restConnector.post('/accounts/send-email-reset-password', {
         email,
-      })
+      }),
     );
   }
 
   public async changePassword(data: ChangePassword) {
     return await SlowFetch(
-      this.restConnector.post("/accounts/change-password", data)
+      this.restConnector.post('/accounts/change-password', data),
     );
   }
 }

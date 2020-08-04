@@ -1,7 +1,7 @@
-import { createSlice, Dispatch } from "@reduxjs/toolkit";
-import { Sleep } from "../../utilities";
-import { AppThunk } from "../store";
-import { RootState } from ".";
+import {createSlice, Dispatch} from '@reduxjs/toolkit';
+import {Sleep} from '../../utilities';
+import {AppThunk} from '../store';
+import {RootState} from '.';
 
 interface InitSliceType {
   location: Location;
@@ -11,7 +11,7 @@ interface InitSliceType {
 const initState: InitSliceType = {} as InitSliceType;
 
 const GlobalsSlice = createSlice({
-  name: "globals",
+  name: 'globals',
   initialState: initState,
   reducers: {
     setReducer(state, action) {
@@ -20,7 +20,7 @@ const GlobalsSlice = createSlice({
   },
 });
 
-export const { setReducer } = GlobalsSlice.actions;
+export const {setReducer} = GlobalsSlice.actions;
 
 export const globalsSelectors = {
   select: (state: RootState): InitSliceType => state.globals,

@@ -1,12 +1,12 @@
-import { isEmpty, isEqual } from "lodash";
+import {isEmpty, isEqual} from 'lodash';
 
 const DefaultMessenger = {
-  required: "Value is required.",
-  regex: "Value incorrect regex.",
-  equal: "Value is not equal",
-  maxLength: "Character length does not match.",
-  minLength: "Character length does not match.",
-  minMaxLength: "Character length does not match.",
+  required: 'Value is required.',
+  regex: 'Value incorrect regex.',
+  equal: 'Value is not equal',
+  maxLength: 'Character length does not match.',
+  minLength: 'Character length does not match.',
+  minMaxLength: 'Character length does not match.',
 };
 
 export type ValidationType = keyof typeof DefaultMessenger;
@@ -32,7 +32,7 @@ export class Validation {
   private _value: string;
   private _statusError: ErrorType | null;
   private _stackFuncs: StackType[];
-  constructor(value: string = "") {
+  constructor(value: string = '') {
     this._value = value;
     this._statusError = null;
     this._stackFuncs = [];
@@ -48,74 +48,74 @@ export class Validation {
     return [false, -1];
   };
 
-  required(messenger: MessengerType = undefined) {
-    const [check] = this.checkFuncs("required");
+  required(messenger: MessengerType = '') {
+    const [check] = this.checkFuncs('required');
     if (!check) {
       this._stackFuncs.push({
         check: () => isEmpty(this._value),
-        type: "required",
+        type: 'required',
         messenger,
       });
     }
     return this;
   }
 
-  equal(str: string, messenger: MessengerType = undefined) {
-    const [check, index] = this.checkFuncs("equal");
+  equal(str: string, messenger: MessengerType = '') {
+    const [check, index] = this.checkFuncs('equal');
     if (check) {
       this._stackFuncs[index].check = () => !isEqual(this._value, str);
     } else {
       this._stackFuncs.push({
         check: () => !isEqual(this._value, str),
-        type: "equal",
+        type: 'equal',
         messenger,
       });
     }
     return this;
   }
 
-  regex(regex: RegExp, messenger: MessengerType = undefined) {
-    const [check] = this.checkFuncs("regex");
+  regex(regex: RegExp, messenger: MessengerType = '') {
+    const [check] = this.checkFuncs('regex');
     if (!check) {
       this._stackFuncs.push({
         check: () => !regex.test(this._value),
-        type: "regex",
+        type: 'regex',
         messenger,
       });
     }
     return this;
   }
 
-  maxLength(max: number, messenger: MessengerType = undefined) {
-    const [check] = this.checkFuncs("maxLength");
+  maxLength(max: number, messenger: MessengerType = '') {
+    const [check] = this.checkFuncs('maxLength');
     if (!check) {
       this._stackFuncs.push({
         check: () => this._value.length > max,
-        type: "maxLength",
+        type: 'maxLength',
         messenger,
       });
     }
     return this;
   }
 
-  minLength(min: number, messenger: MessengerType = undefined) {
-    const [check] = this.checkFuncs("minLength");
+  minLength(min: number, messenger: MessengerType = '') {
+    const [check] = this.checkFuncs('minLength');
     if (!check) {
       this._stackFuncs.push({
         check: () => this._value.length < min,
-        type: "minLength",
+        type: 'minLength',
         messenger,
       });
     }
     return this;
   }
 
-  minMaxLength(min: number, max: number, messenger: MessengerType = undefined) {
-    const [check] = this.checkFuncs("minMaxLength");
+  minMaxLength(min: number, max: number, messenger: MessengerType = '') {
+    const [check] = this.checkFuncs('minMaxLength');
     if (!check) {
       this._stackFuncs.push({
         check: () => this._value.length < min || this._value.length > max,
-        type: "minMaxLength",
+        type: 'minMaxLength',
         messenger:
           messenger ||
           `Characters must be greater than ${min} and smaller than ${max}`,
@@ -125,8 +125,8 @@ export class Validation {
   }
 
   get error() {
-    for (let i = 0; i < this._stackFuncs.length; i++) {
-      const { check, type, messenger } = this._stackFuncs[i];
+    for (const stack of this._stackFuncs) {
+      const {check, type, messenger} = stack;
       if (check(this._value)) {
         const temp = DefaultMessenger[type];
         this._statusError = {
@@ -136,6 +136,7 @@ export class Validation {
         return this._statusError;
       }
     }
+    return;
   }
 
   set value(value: string) {

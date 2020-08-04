@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react';
 
 export default class App extends Component {
-    render() {
-        return (
-            <div>
-                askjfhkasdassa sdf
-            </div>
-        )
-    }
+  render() {
+    return <div>askjfhkasdassa sdf</div>;
+  }
 }

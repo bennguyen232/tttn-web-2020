@@ -1,1 +1,1 @@
-export * from "./AccountGateway";
+export * from './AccountGateway';

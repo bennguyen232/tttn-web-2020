@@ -1,6 +1,6 @@
-export * from "./CheckingArray";
-export * from "./Validation";
-export * from "./SupportValidate";
+export * from './CheckingArray';
+export * from './Validation';
+export * from './SupportValidate';
 
 export const Sleep = async (second: number) => {
   await new Promise((resolve) => {
@@ -10,7 +10,7 @@ export const Sleep = async (second: number) => {
 
 export const SlowFetch = async (
   func: Promise<any | void>,
-  timing: number = 1200
+  timing: number = 1200,
 ) => {
   const all: [Promise<any>, Promise<void>] = [func, Sleep(timing)];
   return Promise.all(all).then(([res]) => res);
