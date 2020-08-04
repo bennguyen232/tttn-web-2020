@@ -58,6 +58,11 @@
       "last 1 safari version"
     ]
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
