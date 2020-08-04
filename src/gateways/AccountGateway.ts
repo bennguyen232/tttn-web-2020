@@ -9,12 +9,10 @@ import {
 import { SlowFetch } from "../utilities";
 
 export class AccountGateway {
-  private localStorageConnector: any;
   private restConnector: AxiosInstance;
 
-  constructor(restConnector: AxiosInstance, localStorageConnector: any) {
+  constructor(restConnector: AxiosInstance) {
     this.restConnector = restConnector;
-    this.localStorageConnector = localStorageConnector;
   }
 
   async login(loginForm: LoginCredentials): Promise<{ token: string }> {
@@ -66,17 +64,18 @@ export class AccountGateway {
 
   async useAndSaveAccessToken(token: string | null): Promise<void> {
     this.restConnector.defaults.headers.common.Authorization = `Bearer ${token}`;
-    await this.localStorageConnector.setItem(
-      "authentication.accessToken",
-      token || ""
-    );
+    // await this.localStorageConnector.setItem(
+    //   "authentication.accessToken",
+    //   token || ""
+    // );
   }
 
   async _loadAccessToken() {
-    const accessToken = await this.localStorageConnector.getItem(
-      "authentication.accessToken"
-    );
-    return accessToken;
+    // const accessToken = await this.localStorageConnector.getItem(
+    //   "authentication.accessToken"
+    // );
+    // return accessToken;
+    return null;
   }
 
   async edit(userForm: LoginUser): Promise<void> {

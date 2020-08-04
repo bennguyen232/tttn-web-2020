@@ -1,6 +1,5 @@
 export * from "./CheckingArray";
 export * from "./Validation";
-export * from "./SupportImagePicker";
 export * from "./SupportValidate";
 
 export const Sleep = async (second: number) => {
@@ -9,7 +8,10 @@ export const Sleep = async (second: number) => {
   });
 };
 
-
-export default {
-  Sleep,
+export const SlowFetch = async (
+  func: Promise<any | void>,
+  timing: number = 1200
+) => {
+  const all: [Promise<any>, Promise<void>] = [func, Sleep(timing)];
+  return Promise.all(all).then(([res]) => res);
 };
