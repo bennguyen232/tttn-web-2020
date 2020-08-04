@@ -8,9 +8,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-    "lint:ts": "tslint 'src/**/*.{ts,tsx,js}'",
-    "lint:fix": "tslint  --fix 'src/**/*.{ts,tsx,js}'"
+    "lint:css": "prettier --write src/**/*.scss",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}' && npm run lint:css",
+    "lint:fix": "tslint  --fix 'src/**/*.{ts,tsx,js}' && npm run lint:css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
