@@ -5,11 +5,5 @@
   "trailingComma": "all",
   "arrowParens": "always",
   "printWidth": 80,
-  "no-duplicate-variable": [
-    true,
-    "check-parameters"
-  ],
-  "no-var-keyword": true,
-  "newline-before-return": true,
   "semi": true
 }
