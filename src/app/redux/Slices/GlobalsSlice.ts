@@ -1,6 +1,4 @@
-import {createSlice, Dispatch} from '@reduxjs/toolkit';
-import {Sleep} from '../../utilities';
-import {AppThunk} from '../store';
+import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '.';
 
 interface InitSliceType {

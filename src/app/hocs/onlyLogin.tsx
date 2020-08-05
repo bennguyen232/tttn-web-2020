@@ -1,4 +1,4 @@
-import React, {Component, FC, FunctionComponent} from 'react';
+import React, {Component, FC} from 'react';
 
 const withMenu = (wrappedComponent: Component | FC) => {
   const WrappedComponent = wrappedComponent as any;

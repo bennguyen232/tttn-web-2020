@@ -1,7 +1,8 @@
+
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "esnext",
+    "module": "esNext",
     "target": "es5",
     "lib": [
       "es6",
@@ -20,13 +21,14 @@
     "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -34,9 +36,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "downlevelIteration": true,
+    "downlevelIteration": true
   },
   "include": [
-    "src"
-  ]
+    "src/app/**/*"
+  ],
+  "exclude": ["node_modules",  "**/*.{scss,css,spec.ts}"]
 }
