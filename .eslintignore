@@ -1,0 +1,7 @@
+src/serviceWorker.ts
+src/registerServiceWorker.js
+src/**/__tests__/**
+node_modules
+.eslintrc.js
+*.config.js
+*.eslintrc.js

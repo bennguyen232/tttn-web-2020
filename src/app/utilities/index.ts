@@ -8,10 +8,7 @@ export const Sleep = async (second: number) => {
   });
 };
 
-export const SlowFetch = async (
-  func: Promise<any | void>,
-  timing: number = 1200,
-) => {
+export const SlowFetch = async (func: Promise<any | void>, timing = 1200) => {
   const all: [Promise<any>, Promise<void>] = [func, Sleep(timing)];
   return Promise.all(all).then(([res]) => res);
 };

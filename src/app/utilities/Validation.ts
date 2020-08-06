@@ -32,7 +32,7 @@ export class Validation {
   private _value: string;
   private _statusError: ErrorType | null;
   private _stackFuncs: StackType[];
-  constructor(value: string = '') {
+  constructor(value = '') {
     this._value = value;
     this._statusError = null;
     this._stackFuncs = [];
@@ -116,9 +116,7 @@ export class Validation {
       this._stackFuncs.push({
         check: () => this._value.length < min || this._value.length > max,
         type: 'minMaxLength',
-        messenger:
-          messenger ||
-          `Characters must be greater than ${min} and smaller than ${max}`,
+        messenger: messenger || `Characters must be greater than ${min} and smaller than ${max}`,
       });
     }
     return this;
@@ -143,8 +141,3 @@ export class Validation {
     this._value = value;
   }
 }
-
-// const test = new Validation();
-// test.value = 'fuck';
-// test.required().equal('fuck');
-// console.log(test.error);

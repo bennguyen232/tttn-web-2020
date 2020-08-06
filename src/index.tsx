@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/index';
-import './scss/index.scss';
+import './assets/scss/index.scss';
 import * as serviceWorker from './serviceWorker';
 // import dotenv from 'dotenv'
 

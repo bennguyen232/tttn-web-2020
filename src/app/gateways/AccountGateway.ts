@@ -17,9 +17,7 @@ export class AccountGateway {
 
   async login(loginForm: LoginCredentials): Promise<{token: string}> {
     try {
-      const {data}: any = await SlowFetch(
-        this.restConnector.post('/accounts/login', loginForm),
-      );
+      const {data}: any = await SlowFetch(this.restConnector.post('/accounts/login', loginForm));
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -31,9 +29,7 @@ export class AccountGateway {
 
   async signUp(signUpForm: SignUp): Promise<ResultAccount> {
     try {
-      const {data}: any = await SlowFetch(
-        this.restConnector.post('/accounts/signup', signUpForm),
-      );
+      const {data}: any = await SlowFetch(this.restConnector.post('/accounts/signup', signUpForm));
       return data;
     } catch (error) {
       // console.log(error);
@@ -112,8 +108,6 @@ export class AccountGateway {
   }
 
   public async changePassword(data: ChangePassword) {
-    return await SlowFetch(
-      this.restConnector.post('/accounts/change-password', data),
-    );
+    return await SlowFetch(this.restConnector.post('/accounts/change-password', data));
   }
 }
