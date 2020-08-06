@@ -9,14 +9,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.{ts,tsx,js,jsx,css,scss}",
-    "lint:ts": "tslint --project tsconfig.json --config tslint.json",
-    "lint:ts:fix": "tslint --project tsconfig.json --config tslint.json --fix",
-    "lint:check": "tsc --project tsconfig.json --noEmit",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
-    "lint": "npm run format && tsc --noEmit && eslint . --fix",
-    "lint:fix3": "npm run format &&  npm run lint:check && npm run lint:ts:fix"
+    "lint": "npm run format && tsc --noEmit && eslint . --fix"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

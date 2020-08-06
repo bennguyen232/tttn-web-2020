@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  font-size: 12px;
+}
+
+section,
+main,
+header,
+footer,
+nav,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
