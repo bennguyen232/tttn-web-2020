@@ -1,29 +1,32 @@
 import React, {FC, useState} from 'react';
 import {makeStyles, Theme, createStyles, Paper, Grid} from '@material-ui/core';
-import {HeightWrapped} from '../hocs/onlyLogin';
-
-interface Item {
-  name: string;
-  event?: () => void;
-}
+import {Link, useLocation} from 'react-router-dom';
+import {HeightWrapped} from '../../assets/constants';
+import {routersContentHome} from '../router/ContentHome';
 
 const MenuLeft: FC = () => {
   const classes = useStyles();
-  const [itemsMenu] = useState<Item[]>([
-    {name: 'All Issues'},
-    {name: 'Open Issues'},
-    {name: 'My Issues'},
-  ]);
+  const [url, setUrl] = useState('');
 
-  const _renderItem = () => {
-    return itemsMenu.map((item, index) => {
+  const location = useLocation();
+  React.useEffect(() => {
+    setUrl(location.pathname);
+  }, [location]);
+
+  const _renderItems = () => {
+    const values = Object.values(routersContentHome);
+    return values.map((item, index) => {
+      const {path, name} = item;
+      const strActive = url === path ? ' active' : '';
+      const className = classes.item + strActive;
       return (
-        <li key={index} className={classes.item}>
-          {item.name}
+        <li key={index} className={className}>
+          <Link to={path}> {name}</Link>
         </li>
       );
     });
   };
+
   return (
     <Paper elevation={6} className={classes.container}>
       <Grid container spacing={2}>
@@ -31,7 +34,7 @@ const MenuLeft: FC = () => {
           <h2>Project Name</h2>
         </Grid>
         <Grid item xs={12}>
-          <ul className={classes.items}>{_renderItem()}</ul>
+          <ul className={classes.items}>{_renderItems()}</ul>
         </Grid>
       </Grid>
     </Paper>
@@ -52,12 +55,18 @@ const useStyles = makeStyles((theme: Theme) =>
       borderTop: `1px solid ${theme.palette.grey[400]}`,
     },
     item: {
-      fontWeight: 500,
-      color: theme.palette.grey.A400,
-      padding: theme.spacing(1),
+      '& a': {
+        fontWeight: 500,
+        color: theme.palette.grey.A400,
+        padding: theme.spacing(1),
+        display: 'block',
+      },
       '&:hover': {
         background: theme.palette.grey[200],
         cursor: 'pointer',
+      },
+      '&.active': {
+        background: theme.palette.grey[300],
       },
     },
   }),

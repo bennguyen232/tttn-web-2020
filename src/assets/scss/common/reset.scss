@@ -6,7 +6,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   font-size: 15px;
   font-family: 'Roboto';
 }
@@ -29,6 +29,10 @@ h6 {
 ul,
 ol {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* width */

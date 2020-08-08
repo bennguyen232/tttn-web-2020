@@ -1,5 +1,7 @@
 import React from 'react';
 import {makeStyles, createStyles, Theme, Paper, TextField, Grid} from '@material-ui/core';
+import {HeightHeader} from '../../assets/constants';
+import CreateTask from './CreateTask';
 
 const Header = () => {
   const classes = useStyles();
@@ -13,6 +15,9 @@ const Header = () => {
           <ul className={classes.nav}>
             <li className={classes.navItem}>Your work</li>
             <li className={classes.navItem}>Project</li>
+            <li>
+              <CreateTask />
+            </li>
           </ul>
         </Grid>
         <Grid container item xs={4} justify="flex-end">
@@ -31,8 +36,6 @@ const Header = () => {
 
 export default Header;
 
-export const HeightHeader = 60;
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
@@ -46,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     logo: {},
     nav: {
       display: 'flex',
+      alignItems: 'center',
     },
     navItem: {
       margin: `0 ${theme.spacing(1)}px`,

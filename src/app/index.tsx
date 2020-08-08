@@ -1,22 +1,11 @@
-import React from 'react';
-import {makeStyles, createStyles, Theme, Paper} from '@material-ui/core';
-import withMenu from './hocs/onlyLogin';
+import React, {FC, useEffect} from 'react';
+import Routers from './router/Routers';
 
-function CenteredGrid() {
-  const classes = useStyles();
+const App: FC = () => {
+  useEffect(() => {
+    // move router after check user login
+  }, []);
+  return <Routers />;
+};
 
-  return <Paper elevation={0} className={classes.container}></Paper>;
-}
-
-export default withMenu(CenteredGrid);
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {},
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }),
-);
+export default App;
