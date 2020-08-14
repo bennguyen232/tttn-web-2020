@@ -13,7 +13,7 @@ import {useGlobalStyles} from '../utilities';
 import {TasksData, Tasks, Tag} from '../models';
 import {TASKS_DATA} from '../../data/tasks';
 
-export const AllIssuesScreen: FC = () => {
+const OverviewScreen: FC = () => {
   // const classes = useStyles();
   const globals = useGlobalStyles();
   const [tasksData /*, setTasksData*/] = useState<TasksData>(TASKS_DATA);
@@ -61,7 +61,7 @@ export const AllIssuesScreen: FC = () => {
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <Typography variant="h6" component="h2">
-          All Issues
+          All Tasks
         </Typography>
       </Grid>
       <Grid item xs={12}>
@@ -70,7 +70,7 @@ export const AllIssuesScreen: FC = () => {
     </Grid>
   );
 };
-export default AllIssuesScreen;
+export default OverviewScreen;
 
 // const useStyles = makeStyles((theme: Theme) =>
 //   createStyles({

@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import {makeStyles, Theme, createStyles, Paper, Grid} from '@material-ui/core';
 import {Link, useLocation} from 'react-router-dom';
 import {HeightWrapped} from '../../assets/constants';
-import {routersContentHome} from '../router/ContentHome';
+import {routersContentHome} from '../router/Routers';
 
 const MenuLeft: FC = () => {
   const classes = useStyles();
@@ -21,7 +21,7 @@ const MenuLeft: FC = () => {
       const className = classes.item + strActive;
       return (
         <li key={index} className={className}>
-          <Link to={path}> {name}</Link>
+          <Link to={path || '/'}> {name}</Link>
         </li>
       );
     });

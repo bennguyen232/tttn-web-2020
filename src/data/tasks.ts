@@ -1,6 +1,6 @@
 import {TasksData, Task, Tag} from '../app/models';
 
-const TAGS_DATA = ['Todo', 'In Progress', 'Ready To Test', 'Done'];
+const TAGS_DATA = ['Todo', 'Specified', 'In Progress', 'Ready To Test', 'Done'];
 
 const TAGS: Tag[] = TAGS_DATA.map((item, index) => ({
   id: `tag-${index}`,

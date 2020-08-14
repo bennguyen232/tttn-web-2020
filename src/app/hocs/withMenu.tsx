@@ -12,7 +12,7 @@ import Header from '../components/Header';
 import MenuLeft from '../components/MenuLeft';
 import {HeightWrapped} from '../../assets/constants';
 import {useLocation, Link} from 'react-router-dom';
-import {routersContentHome} from '../router/ContentHome';
+import {routersContentHome} from '../router/Routers';
 
 export default (WrappedComponent: ComponentType<any>) => {
   const HocComponent: FC<any> = ({...props}) => {

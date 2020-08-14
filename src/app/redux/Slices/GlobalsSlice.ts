@@ -1,12 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '.';
+import {Colors} from '../../models';
+import {DATA_TEST} from '../../../data/another';
 
 interface InitSliceType {
-  location: Location;
-  customLocation: Location;
+  colors: Colors;
 }
 
-const initState: InitSliceType = {} as InitSliceType;
+// const initState: InitSliceType = {} as InitSliceType;
+const initState: InitSliceType = DATA_TEST;
 
 const GlobalsSlice = createSlice({
   name: 'globals',

@@ -1,7 +1,5 @@
 import {AccountGateway} from '../gateways';
 import {LoginCredentials, LoginUser, SignUp, ChangePassword} from '../models';
-import {checkValidates} from '../utilities';
-import {settingValidateSignUp, settingValidateLogin} from './supportForm';
 
 export class AccountService {
   [x: string]: any;
@@ -12,7 +10,6 @@ export class AccountService {
   }
 
   async login(loginForm: LoginCredentials) {
-    checkValidates(loginForm, settingValidateLogin);
     const {token} = await this.accountGateway.login(loginForm);
     await this.accountGateway.useAndSaveAccessToken(token);
     return this.accountGateway.getLoginUser();
@@ -24,7 +21,6 @@ export class AccountService {
   }
 
   signUp(signUpForm: SignUp) {
-    checkValidates(signUpForm, settingValidateSignUp);
     return this.accountGateway.signUp(signUpForm);
   }
 
