@@ -16,7 +16,7 @@ export const useGlobalStyles = makeStyles(({spacing, palette}: Theme) => {
       background: palette.grey[100],
     },
     task: {
-      margin: `${spacing(1)}px 0`,
+      margin: spacing(1, 0),
     },
     taskContent: {
       flex: '1 0 auto',
@@ -31,6 +31,8 @@ export const useGlobalStyles = makeStyles(({spacing, palette}: Theme) => {
     h50: {height: '50%'},
     h70: {height: '75%'},
     h100: {height: '100%'},
+    //
+    resetPdMg: {margin: spacing(0), padding: spacing(0)},
     // margin
     m0: {margin: spacing(0)},
     m1: {margin: spacing(1)},

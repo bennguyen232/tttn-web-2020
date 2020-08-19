@@ -7,7 +7,7 @@ const TAGS: Tag[] = TAGS_DATA.map((item, index) => ({
   name: item,
 }));
 
-const generateTasks = () => {
+const generateTasks = (item: Tag) => {
   const tasks: Task[] = [];
   const num = Math.floor(Math.random() * 11);
   for (let index = 0; index < num; index++) {
@@ -21,5 +21,5 @@ const generateTasks = () => {
 
 export const TASKS_DATA: TasksData = TAGS.map((item) => ({
   tag: item,
-  tasks: generateTasks(),
+  tasks: generateTasks(item),
 }));

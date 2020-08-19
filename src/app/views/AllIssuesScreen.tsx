@@ -64,8 +64,9 @@ export const AllIssuesScreen: FC = () => {
           All Issues
         </Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid container item xs={12}>
         <div className={globals.groups}>{_renderColumn()}</div>
+        <Grid></Grid>
       </Grid>
     </Grid>
   );
