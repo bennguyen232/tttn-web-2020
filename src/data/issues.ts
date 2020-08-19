@@ -1,1 +1,1 @@
-export const ISSUES = []
+export const ISSUES = [];

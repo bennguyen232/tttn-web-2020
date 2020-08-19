@@ -12,7 +12,6 @@ import {
   Paper,
   Typography,
   TextField,
-  MenuItem,
 } from '@material-ui/core';
 import {Autocomplete} from '@material-ui/lab';
 
@@ -81,7 +80,7 @@ const CreateTask: FC = () => {
 };
 export default CreateTask;
 
-const useStyles = makeStyles(({palette, shadows, spacing}: Theme) =>
+const useStyles = makeStyles(({spacing}: Theme) =>
   createStyles({
     modal: {
       display: 'flex',
