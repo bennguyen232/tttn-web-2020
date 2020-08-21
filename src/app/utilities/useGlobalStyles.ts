@@ -2,7 +2,7 @@ import {makeStyles, createStyles, Theme} from '@material-ui/core';
 
 const widthTask = 230;
 
-export const useGlobalStyles = makeStyles(({spacing, palette}: Theme) => {
+export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) => {
   return createStyles({
     groups: {
       display: 'flex',
@@ -47,5 +47,15 @@ export const useGlobalStyles = makeStyles(({spacing, palette}: Theme) => {
     p3: {padding: spacing(3)},
     p4: {padding: spacing(4)},
     p5: {padding: spacing(5)},
+    py1: {padding: spacing(1, 0)},
+    py2: {padding: spacing(2, 0)},
+    // flex
+    d_flex: {display: 'flex'},
+    //shadow
+    shadow1: {boxShadow: shadows[1]},
+    // border
+    bb1: {
+      borderBottom: `1px solid ${palette.grey[400]}`,
+    },
   });
 });
