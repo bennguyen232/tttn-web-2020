@@ -151,6 +151,27 @@ const CreateTask: FC = () => {
                     control={control}
                     render={({onChange, onBlur}) => (
                       <Autocomplete
+                        options={['a', 'b', 'c', 'd', 'e']}
+                        getOptionLabel={(option) => {
+                          onChange(option);
+                          return option.toString();
+                        }}
+                        onBlur={onBlur}
+                        onChange={(value) => onChange(value)}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Assignee" variant="outlined" />
+                        )}
+                      />
+                    )}
+                    name="assignee"
+                    defaultValue=""
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Controller
+                    control={control}
+                    render={({onChange, onBlur}) => (
+                      <Autocomplete
                         options={['Highest', 'High', 'Medium', 'Low', 'Lowest']}
                         getOptionLabel={(option) => {
                           onChange(option);
@@ -163,7 +184,7 @@ const CreateTask: FC = () => {
                         )}
                       />
                     )}
-                    name="Priority"
+                    name="priority"
                     defaultValue=""
                   />
                 </Grid>

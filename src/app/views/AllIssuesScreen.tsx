@@ -23,6 +23,10 @@ export const AllIssuesScreen: FC = () => {
       type: '1',
       summary: 'summary',
       note: 'aadd',
+      priority: 'Highest',
+      sprint: '1',
+      storyPoint: '2',
+      assignee: 'asd',
     },
     {
       id: '1234',
@@ -30,6 +34,10 @@ export const AllIssuesScreen: FC = () => {
       type: '2',
       summary: 'summary23',
       note: 'dddd',
+      priority: 'High',
+      sprint: '2',
+      storyPoint: '5',
+      assignee: 'asd',
     },
   ];
   // const classes = useStyles();
@@ -141,7 +149,7 @@ export const AllIssuesScreen: FC = () => {
   const renderDetetlIssue = () => {
     if (!chossenIssue) return;
     return (
-      <Grid container item spacing={1}>
+      <Grid container item spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" component="h2">
             {chossenIssue.name}
@@ -156,44 +164,82 @@ export const AllIssuesScreen: FC = () => {
             value={chossenIssue.summary}
           />
         </Grid>
-        <Grid item xs={12}>
-          <Autocomplete
-            options={['Highest', 'High', 'Medium', 'Low', 'Lowest']}
-            getOptionLabel={(option: any) => {
-              const value = option.toString();
-              changeDataIssue('sprint', value);
-              return value;
-            }}
-            renderInput={(params: any) => (
-              <TextField
-                {...params}
-                onChange={(value) => {
-                  console.log('asdad', value);
-                }}
-                label="Priority"
-                variant="outlined"
-              />
-            )}
-          />
-          <Autocomplete
-            options={['Highest', 'High', 'Medium', 'Low', 'Lowest']}
-            getOptionLabel={(option: any) => {
-              const value = option.toString();
-              console.log({value});
-
-              // changeDataIssue('sprint', value);
-              return value;
-            }}
-            renderInput={(params: any) => (
-              <TextField {...params} label="Priority" variant="outlined" />
-            )}
-          />
+        <Grid container item xs={12} direction="row" spacing={3}>
+          <Grid item>
+            <Autocomplete
+              options={['Highest', 'High', 'Medium', 'Low', 'Lowest']}
+              size="small"
+              getOptionLabel={(option: any) => {
+                const value = option.toString();
+                // changeDataIssue('sprint', value);
+                return value;
+              }}
+              inputValue={chossenIssue.priority}
+              renderInput={(params: any) => (
+                <TextField {...params} label="Priority" variant="outlined" />
+              )}
+            />
+          </Grid>
+          <Grid item>
+            <Autocomplete
+              options={[1, 2, 3, 4, 5]}
+              inputValue={chossenIssue.sprint}
+              size="small"
+              getOptionLabel={(option) => {
+                // onChange(option);
+                return option.toString();
+              }}
+              renderInput={(params) => <TextField {...params} label="Sprint" variant="outlined" />}
+            />
+          </Grid>
+          <Grid item>
+            <Autocomplete
+              options={[1, 2, 3, 4]}
+              size="small"
+              getOptionLabel={(option: any) => {
+                const value = option.toString();
+                // changeDataIssue('sprint', value);
+                return value;
+              }}
+              inputValue={chossenIssue.storyPoint}
+              renderInput={(params: any) => (
+                <TextField {...params} label="Story point" variant="outlined" />
+              )}
+            />
+          </Grid>
+          <Grid item>
+            <Autocomplete
+              options={[1, 2, 3, 4]}
+              size="small"
+              getOptionLabel={(option: any) => {
+                const value = option.toString();
+                // changeDataIssue('sprint', value);
+                return value;
+              }}
+              inputValue={chossenIssue.storyPoint}
+              renderInput={(params: any) => (
+                <TextField {...params} label="Story point" variant="outlined" />
+              )}
+            />
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1" component="h4">
             Note
           </Typography>
           {renderNote()}
+        </Grid>
+        <Grid item>
+          <Typography variant="subtitle1" component="h4">
+            Assignee
+          </Typography>
+          <Autocomplete
+            options={[1, 2, 3, 4]}
+            size="small"
+            getOptionLabel={(option: any) => option.toString()}
+            inputValue={chossenIssue.assignee}
+            renderInput={(params: any) => <TextField {...params} variant="outlined" />}
+          />
         </Grid>
       </Grid>
     );
@@ -210,7 +256,7 @@ export const AllIssuesScreen: FC = () => {
         <Grid item xs={3} className={mulClasses([globals.p2, globals.br1])}>
           {renderListIssue()}
         </Grid>
-        <Grid container item xs={9} className={globals.p2}>
+        <Grid container item xs={9} className={globals.p5}>
           {renderDetetlIssue()}
         </Grid>
       </Grid>
