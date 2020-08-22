@@ -31,6 +31,10 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
     h50: {height: '50%'},
     h70: {height: '75%'},
     h100: {height: '100%'},
+    mh25: {minHeight: '25%'},
+    mh50: {minHeight: '50%'},
+    mh70: {minHeight: '75%'},
+    mh100: {minHeight: '100%'},
     //
     resetPdMg: {margin: spacing(0), padding: spacing(0)},
     // margin
@@ -50,12 +54,28 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
     py1: {padding: spacing(1, 0)},
     py2: {padding: spacing(2, 0)},
     // flex
+    f1: {
+      flex: 1,
+    },
     d_flex: {display: 'flex'},
+    d_flexStart: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+    },
     //shadow
-    shadow1: {boxShadow: shadows[1]},
+    shadow1: {boxShadow: shadows[2]},
     // border
     bb1: {
       borderBottom: `1px solid ${palette.grey[400]}`,
+    },
+    bt1: {
+      borderTop: `1px solid ${palette.grey[400]}`,
+    },
+    bl1: {
+      borderLeft: `1px solid ${palette.grey[400]}`,
+    },
+    br1: {
+      borderRight: `1px solid ${palette.grey[400]}`,
     },
   });
 });
