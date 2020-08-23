@@ -24,7 +24,7 @@ import {useForm, Controller} from 'react-hook-form';
 const CreateTask: FC = () => {
   const classes = useStyles();
   const global = useGlobalStyles();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const {control, handleSubmit} = useForm();
 
   const handleOpen = () => {
@@ -62,7 +62,7 @@ const CreateTask: FC = () => {
           <Paper elevation={2} className={classes.paper}>
             <Grid container>
               <Grid item xs={12} className={global.py2}>
-                <Typography variant="subtitle1" component="h4">
+                <Typography variant="h3" component="h4" align="center">
                   Create Issue
                 </Typography>
               </Grid>
@@ -229,25 +229,21 @@ const CreateTask: FC = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid
-                container
-                xs={12}
-                spacing={3}
-                direction="row"
-                justify="flex-end"
-                alignItems="center">
-                <FormControlLabel
-                  value="end"
-                  control={<Checkbox color="primary" />}
-                  label="Create another"
-                  labelPlacement="end"
-                />
-                <Button variant="contained" color="primary" onClick={handleSubmit(onSubmit)}>
-                  Create
-                </Button>
-                <Link onClick={handleClose} color="inherit" className={classes.textButton}>
-                  {'Cansel'}
-                </Link>
+              <Grid container item xs={12} justify="flex-end" alignItems="center">
+                <Paper elevation={0} className={global.p2}>
+                  <FormControlLabel
+                    value="end"
+                    control={<Checkbox color="primary" />}
+                    label="Create another"
+                    labelPlacement="end"
+                  />
+                  <Button variant="contained" color="primary" onClick={handleSubmit(onSubmit)}>
+                    Create
+                  </Button>
+                  <Link onClick={handleClose} color="inherit" className={classes.textButton}>
+                    {'Cansel'}
+                  </Link>
+                </Paper>
               </Grid>
             </Grid>
           </Paper>
@@ -270,6 +266,7 @@ const useStyles = makeStyles(({spacing, palette}: Theme) =>
       width: '50%',
       height: 'calc(100% - 100px)',
       outline: 'none',
+      overflowY: 'auto',
     },
     boderBottom: {
       borderBottom: `1px solid ${palette.grey[400]}`,
