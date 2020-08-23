@@ -1,12 +1,27 @@
-// import {ResultAccount} from './Account';
+import {ResultAccount} from './Account';
+import {Sprint} from './Another';
+
+export interface CreateIssueType {
+  Summary: string;
+  Note?: string;
+  ProjectId: string;
+  SprintId: string;
+  IssueParentId?: string;
+  UserCreatedId: string;
+  AssigneeId: string;
+  CustomsId: string[];
+}
+
 export interface IssueType {
-  id: string;
-  name: string;
-  type: string;
-  summary: string;
-  note?: string;
-  priority: string;
-  sprint: string;
-  storyPoint: string;
-  assignee: string; //ResultAccount;
+  Id: string;
+  Summary: string;
+  Note?: string;
+  ProjectId: string;
+  Sprint: Sprint;
+  IssueParent?: string;
+  UserCreated: ResultAccount;
+  Assignee: ResultAccount;
+  IsActive?: boolean;
+  CreatedAt: string;
+  UpdatedAt: string;
 }

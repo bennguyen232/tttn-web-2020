@@ -5,3 +5,9 @@ export interface Color {
 }
 
 export type Colors = Color[];
+
+export interface Sprint {
+  Id: string;
+  Name: string;
+  Description: string;
+}

@@ -172,6 +172,26 @@ const CreateTask: FC = () => {
                     control={control}
                     render={({onChange, onBlur}) => (
                       <Autocomplete
+                        options={[1, 2, 3, 4, 5]}
+                        getOptionLabel={(option) => {
+                          onChange(option);
+                          return option.toString();
+                        }}
+                        onBlur={onBlur}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Sprint" variant="outlined" />
+                        )}
+                      />
+                    )}
+                    name="sprint"
+                    defaultValue=""
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Controller
+                    control={control}
+                    render={({onChange, onBlur}) => (
+                      <Autocomplete
                         options={['Highest', 'High', 'Medium', 'Low', 'Lowest']}
                         getOptionLabel={(option) => {
                           onChange(option);
@@ -185,26 +205,6 @@ const CreateTask: FC = () => {
                       />
                     )}
                     name="priority"
-                    defaultValue=""
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <Controller
-                    control={control}
-                    render={({onChange, onBlur}) => (
-                      <Autocomplete
-                        options={[1, 2, 3, 4, 5]}
-                        getOptionLabel={(option) => {
-                          onChange(option);
-                          return option.toString();
-                        }}
-                        onBlur={onBlur}
-                        renderInput={(params) => (
-                          <TextField {...params} label="Sprint" variant="outlined" />
-                        )}
-                      />
-                    )}
-                    name="sprint"
                     defaultValue=""
                   />
                 </Grid>
