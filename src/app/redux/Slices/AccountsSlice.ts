@@ -16,10 +16,11 @@ const Accounts = createSlice({
 
 export const {setAccount} = Accounts.actions;
 
-export const login = (loginForm: LoginCredentials): AppThunk => async (dispatch: Dispatch) => {
+export const login = (loginForm: LoginCredentials) => async (dispatch: Dispatch) => {
   const user = await accountService.login(loginForm);
   if (!user) {
     alert('Wrong email or password, please try again');
+    return null;
   }
   dispatch(setAccount(user));
   return user;
@@ -33,7 +34,7 @@ export const signUp = (data: SignUp, callback = () => {}): AppThunk => async (
   if (!result) {
     alert('Wrong email or password, please try again');
   } else {
-    const user = await accountService.login({password, email});
+    const user = await accountService.login({password, username: email});
     if (!user) {
       alert('Wrong email or password, please try again');
     }

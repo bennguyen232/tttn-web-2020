@@ -134,7 +134,7 @@ export class Validation {
         return this._statusError;
       }
     }
-    return;
+    return '';
   }
 
   set value(value: string) {

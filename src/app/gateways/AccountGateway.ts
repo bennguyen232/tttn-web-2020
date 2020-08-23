@@ -17,9 +17,11 @@ export class AccountGateway {
 
   async login(loginForm: LoginCredentials): Promise<{token: string}> {
     try {
-      const {data}: any = await SlowFetch(this.restConnector.post('/accounts/login', loginForm));
+      const {data}: any = await SlowFetch(this.restConnector.post('/users/login', loginForm));
       return data;
     } catch (error) {
+      console.log(error);
+
       if (error.response && error.response.status === 401) {
         return {token: ''};
       }
@@ -29,7 +31,7 @@ export class AccountGateway {
 
   async signUp(signUpForm: SignUp): Promise<ResultAccount> {
     try {
-      const {data}: any = await SlowFetch(this.restConnector.post('/accounts/signup', signUpForm));
+      const {data}: any = await SlowFetch(this.restConnector.post('/users/signup', signUpForm));
       return data;
     } catch (error) {
       // console.log(error);
@@ -48,7 +50,7 @@ export class AccountGateway {
         return null;
       }
       this.restConnector.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-      const {data} = await this.restConnector.get('/accounts/me');
+      const {data} = await this.restConnector.get('/users/me');
       return data;
     } catch (e) {
       if (e.response && e.response.status === 401) {
@@ -60,18 +62,12 @@ export class AccountGateway {
 
   async useAndSaveAccessToken(token: string | null): Promise<void> {
     this.restConnector.defaults.headers.common.Authorization = `Bearer ${token}`;
-    // await this.localStorageConnector.setItem(
-    //   "authentication.accessToken",
-    //   token || ""
-    // );
+    localStorage.setItem('authentication.accessToken', token || '');
   }
 
   async _loadAccessToken() {
-    // const accessToken = await this.localStorageConnector.getItem(
-    //   "authentication.accessToken"
-    // );
-    // return accessToken;
-    return null;
+    const accessToken = localStorage.getItem('authentication.accessToken');
+    return accessToken;
   }
 
   async edit(userForm: LoginUser): Promise<void> {
@@ -80,7 +76,7 @@ export class AccountGateway {
       lastName: userForm.lastName,
       imageUrl: userForm.imageUrl,
     };
-    await SlowFetch(this.restConnector.patch(`/accounts/${userForm.id}`, req));
+    await SlowFetch(this.restConnector.patch(`/user/${userForm.id}`, req));
   }
 
   public async upload(file: any) {
@@ -91,7 +87,7 @@ export class AccountGateway {
     };
     try {
       const data = await SlowFetch(
-        this.restConnector.post('/accounts/upload-image', formData, options),
+        this.restConnector.post('/users/upload-image', formData, options),
       );
       return data;
     } catch (e) {
@@ -101,13 +97,13 @@ export class AccountGateway {
 
   public async forgotPassword(email: string) {
     return await SlowFetch(
-      this.restConnector.post('/accounts/send-email-reset-password', {
+      this.restConnector.post('/users/send-email-reset-password', {
         email,
       }),
     );
   }
 
   public async changePassword(data: ChangePassword) {
-    return await SlowFetch(this.restConnector.post('/accounts/change-password', data));
+    return await SlowFetch(this.restConnector.post('/users/change-password', data));
   }
 }

@@ -12,16 +12,35 @@ export interface CreateIssueType {
   CustomsId: string[];
 }
 
-export interface IssueType {
+interface CategoryType {
+  Id: string;
+  Name: string;
+  Description: string;
+}
+
+interface IssueType {
+  Id: string;
+  Name: string;
+  Description: string;
+  IconName: string;
+  Styles: string;
+  CategoryTypeId: string;
+}
+
+export interface Issue {
   Id: string;
   Summary: string;
-  Note?: string;
-  ProjectId: string;
-  Sprint: Sprint;
-  IssueParent?: string;
-  UserCreated: ResultAccount;
-  Assignee: ResultAccount;
+  Description: string;
   IsActive?: boolean;
-  CreatedAt: string;
-  UpdatedAt: string;
+  CreatedAt: Date;
+  UpdatedAt: Date;
+  IssueParentId?: string;
+  ProjectId: string;
+  SprintId: string;
+  UserCreatedId: string;
+  AssigneeId: string;
+  IssueTypes: {
+    Priority?: IssueType[];
+    StoryPoint?: IssueType[];
+  };
 }

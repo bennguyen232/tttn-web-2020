@@ -1,39 +1,24 @@
-import React, {FC} from 'react';
-import {
-  Paper,
-  Typography,
-  Grid,
-  makeStyles,
-  Theme,
-  createStyles,
-  TextField,
-  Button,
-} from '@material-ui/core';
-import {Autocomplete} from '@material-ui/lab';
-import {useForm, Controller} from 'react-hook-form';
+import React, {FC, useEffect} from 'react';
+import {Paper, Typography, Grid, makeStyles, Theme, createStyles, Button} from '@material-ui/core';
+import {useForm} from 'react-hook-form';
 import {Tag} from '../models/Setting';
-import _ from 'lodash';
 // import InputSelectControl from '../components/InputSelectControl';
 // import {useGlobalStyles, mulClasses} from '../utilities';
 
-// type Props = {
-//   dispatch: AppDispatch;
-// } & ReturnType<typeof mapStateToProps>;
+const DefaultOptions: Tag[] = [
+  {id: '1', name: 'Highest'},
+  {id: '2', name: 'ken'},
+];
 
 const SettingsScreen: FC = () => {
   const classes = useStyles();
   // const globals = useGlobalStyles();
-  const options: Tag[] = [
-    {id: '1', name: 'Highest'},
-    {id: '2', name: 'ken'},
-    {id: '3', name: 'asdasd'},
-    {id: '4', name: 'asdasdasd'},
-  ];
-
-  const DefaultOptions: Tag[] = [
-    {id: '1', name: 'Highest'},
-    {id: '2', name: 'ken'},
-  ];
+  // const options: Tag[] = [
+  //   {id: '1', name: 'Highest'},
+  //   {id: '2', name: 'ken'},
+  //   {id: '3', name: 'asdasd'},
+  //   {id: '4', name: 'asdasdasd'},
+  // ];
 
   // const getOpObj = (option: Tag) => {
   //   if (!option.id) {
@@ -43,13 +28,13 @@ const SettingsScreen: FC = () => {
   //   return option;
   // };
 
-  const [inputValue, setInputValue] = React.useState('');
+  // const [inputValue, setInputValue] = React.useState('');
 
-  const {handleSubmit, control, setValue} = useForm();
+  const {handleSubmit, setValue} = useForm<Tag[]>();
 
   const onSubmit = (data: any) => console.log('ken', data);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue('priority', DefaultOptions);
   }, [setValue]);
 
@@ -63,7 +48,7 @@ const SettingsScreen: FC = () => {
       <Grid item xs={12}>
         <Paper elevation={1} className={classes.content}>
           <Grid container item xs={12} spacing={2}>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Controller
                 render={(props) => (
                   <Autocomplete
@@ -101,7 +86,7 @@ const SettingsScreen: FC = () => {
                 name="priority"
                 defaultValue={[]} // this prevents the "controlled/uncontrolled change" error
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <Button variant="contained" color="primary" onClick={handleSubmit(onSubmit)}>
                 Create

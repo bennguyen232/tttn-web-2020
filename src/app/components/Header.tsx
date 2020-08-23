@@ -10,7 +10,7 @@ const Header = () => {
       <Grid container spacing={1} alignItems="center">
         <Grid container item xs={8}>
           <div className={classes.logo}>
-            <img src="" alt="logo" />
+            <img src="/images/dayone-logo.png" alt="logo" />
           </div>
           <ul className={classes.nav}>
             <li className={classes.navItem}>Your work</li>
@@ -46,7 +46,12 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       padding: `0 ${theme.spacing(2)}px`,
     },
-    logo: {},
+    logo: {
+      maxWidth: 125,
+      '& img': {
+        width: '100%',
+      },
+    },
     nav: {
       display: 'flex',
       alignItems: 'center',

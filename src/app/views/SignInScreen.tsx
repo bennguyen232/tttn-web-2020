@@ -2,12 +2,22 @@ import React, {FC} from 'react';
 import {Grid, TextField, Button, Paper} from '@material-ui/core';
 import {useGlobalStyles, mulClasses} from '../utilities';
 import {useForm, Controller} from 'react-hook-form';
+import store from '../redux/store';
+import {login} from '../redux/Slices/AccountsSlice';
+import {LoginCredentials} from '../models';
+import {useHistory} from 'react-router-dom';
 
 export const SignInScreen: FC = () => {
   const globals = useGlobalStyles();
-  const {control, handleSubmit} = useForm();
+  const {control, handleSubmit} = useForm<LoginCredentials>();
+  const history = useHistory();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: LoginCredentials) => {
+    const user = await store.dispatch(login(data));
+    if (user) {
+      history.replace('/');
+    }
+  };
 
   return (
     <>
@@ -40,7 +50,7 @@ export const SignInScreen: FC = () => {
                     // defaultValue={chossenIssue.summary}
                   />
                 )}
-                name="email"
+                name="username"
                 defaultValue=""
               />
             </Grid>
