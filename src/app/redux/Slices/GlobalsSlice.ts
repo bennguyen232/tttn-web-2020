@@ -1,21 +1,34 @@
 import {createSlice, Dispatch} from '@reduxjs/toolkit';
 import {RootState} from '.';
-import {Project} from '../../models';
+import {Project, IssueType, Member} from '../../models';
 import {AppThunk} from '../store';
-import {anotherService, issueService} from '../../services';
+import {anotherService, issueService, projectService} from '../../services';
 import _ from 'lodash';
 
-interface InitSliceType {
+interface ConfigProject {
+  IssueTypes: IssueType[];
+  StoryPoints: IssueType[];
+  Priorities: IssueType[];
+  Statuses: IssueType[];
+}
+
+interface InitSliceType extends ConfigProject {
   Projects: Project[];
   ProjectActiveId: string;
   Issues: any[];
+  Members: Member[];
 }
 
 // const initState: InitSliceType = {} as InitSliceType;
 const initState: InitSliceType = {
   Projects: [],
   ProjectActiveId: '',
+  Members: [],
   Issues: [],
+  IssueTypes: [],
+  StoryPoints: [],
+  Priorities: [],
+  Statuses: [],
 };
 
 const GlobalsSlice = createSlice({
@@ -41,16 +54,26 @@ export const getAllData = (): AppThunk => async (dispatch: Dispatch, getState) =
 export const setProjectActive = (id: string): AppThunk => async (dispatch: Dispatch, getState) => {
   const {globals} = getState();
   const {Projects, ProjectActiveId} = globals;
-  let _id = id;
+  let _id = '';
   if (!ProjectActiveId && (id === 'first' || Projects.length > 0)) {
     _id = _.get(Projects, '[0].Id', '');
+  } else {
+    _id = id;
   }
   let issues = [];
-  if (ProjectActiveId) {
-    issues = await issueService.getIssuesByProjectId(ProjectActiveId);
+  let config: ConfigProject = {} as ConfigProject;
+  if (_id) {
+    console.log('========================');
+    issues = await issueService.getIssuesByProjectId(_id);
+    config = await projectService.getConfig(_id);
   }
+  console.log({config});
+  Object.assign(config, {
+    StoryPoints: _.sortBy(config.StoryPoints, (i) => parseInt(i.Name)),
+  });
   const newData: InitSliceType = {
     ...globals,
+    ...config,
     ProjectActiveId: _id,
     Issues: issues,
   };

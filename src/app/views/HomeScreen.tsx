@@ -108,7 +108,7 @@ export const useStylesItem = makeStyles(({spacing, shadows}: Theme) =>
     cardItem: {
       height: heightItem,
       width: (heightItem * 4) / 3,
-      margin: spacing(0, 1),
+      margin: spacing(1),
       cursor: 'pointer',
       '&:hover': {
         boxShadow: shadows[6],

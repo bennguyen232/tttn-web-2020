@@ -67,8 +67,8 @@ const CreateProject: FC = () => {
       console.log(project);
       if (project) {
         setOpen(false);
-        store.dispatch(setProjectActive(project.Id));
-        store.dispatch(getAllData());
+        await store.dispatch(getAllData());
+        await store.dispatch(setProjectActive(project.Id));
         history.push('/issues');
       }
     } catch (error) {

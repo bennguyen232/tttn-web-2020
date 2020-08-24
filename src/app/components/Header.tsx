@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles, createStyles, Theme, Paper, TextField, Grid} from '@material-ui/core';
 import {HeightHeader} from '../../assets/constants';
-import CreateTask from './CreateTask';
+import CreateIssue from './CreateIssue';
 
 const Header = () => {
   const classes = useStyles();
@@ -16,7 +16,7 @@ const Header = () => {
             <li className={classes.navItem}>Your work</li>
             <li className={classes.navItem}>Project</li>
             <li>
-              <CreateTask />
+              <CreateIssue />
             </li>
           </ul>
         </Grid>

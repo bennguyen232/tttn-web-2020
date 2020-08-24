@@ -44,6 +44,10 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
     m3: {margin: spacing(3)},
     m4: {margin: spacing(4)},
     m5: {margin: spacing(5)},
+
+    ml1: {marginLeft: spacing(1)},
+    ml2: {marginLeft: spacing(2)},
+
     //padding
     p0: {padding: spacing(0)},
     p1: {padding: spacing(1)},
@@ -94,6 +98,10 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
       lineHeight: '1.1876em',
       letterSpacing: '0.00938em',
       outline: 'none',
+      border: '1px solid rgba(0, 0, 0, 0.23)',
+      '&:hover': {
+        border: '1px solid rgba(0, 0, 0, 0.87)',
+      },
     },
   });
 });

@@ -11,4 +11,13 @@ export class ProjectService {
   create(project: CreateProjectModel) {
     return this.projectGateway.create(project);
   }
+
+  getConfig(id: string) {
+    return this.projectGateway.getConfig(id);
+  }
+
+  // TODO disable api
+  getMember(id: string) {
+    return this.projectGateway.getMember(id);
+  }
 }

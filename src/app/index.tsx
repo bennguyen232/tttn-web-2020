@@ -9,13 +9,17 @@ const App: FC = () => {
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      const user = await store.dispatch(loadLoginUser());
-      if (!user) {
+      try {
+        const user = await store.dispatch(loadLoginUser());
+        if (!user) {
+          history.replace('/sign-in');
+          return;
+        }
+        await store.dispatch(getAllData());
+        store.dispatch(setProjectActive('first'));
+      } catch (error) {
         history.replace('/sign-in');
-        return;
       }
-      await store.dispatch(getAllData());
-      store.dispatch(setProjectActive('first'));
     })();
   }, [history]);
   return <Routers />;

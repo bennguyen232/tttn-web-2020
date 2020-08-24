@@ -1,27 +1,35 @@
-export interface CreateIssueType {
+interface CustomCreateIssue {
   Summary: string;
-  Note?: string;
+  Description?: string;
   ProjectId: string;
-  SprintId: string;
   IssueParentId?: string;
-  UserCreatedId: string;
   AssigneeId: string;
+}
+
+export interface CreateIssueForm extends CustomCreateIssue {
+  IssueTypeId: string;
+  PriorityId: string;
+  StoryPointId: string;
+}
+
+export interface CreateIssueRequest extends CustomCreateIssue {
+  /**
+   * issueType, priorityId, storyPointId,
+   */
   CustomsId: string[];
 }
 
-interface CategoryType {
+export interface IssueType {
   Id: string;
   Name: string;
-  Description: string;
-}
-
-interface IssueType {
-  Id: string;
-  Name: string;
-  Description: string;
+  ContentTypeDescription: string;
   IconName: string;
   Styles: string;
   CategoryTypeId: string;
+  CategoryTypeName: string;
+  CategoryTypeDescription: string;
+  IsActive: true;
+  IsDefault: true;
 }
 
 export interface Issue {
@@ -33,11 +41,10 @@ export interface Issue {
   UpdatedAt: Date;
   IssueParentId?: string;
   ProjectId: string;
-  SprintId: string;
   UserCreatedId: string;
   AssigneeId: string;
   IssueTypes: {
-    Priority?: IssueType[];
-    StoryPoint?: IssueType[];
+    Priority: IssueType;
+    StoryPoint?: IssueType;
   };
 }

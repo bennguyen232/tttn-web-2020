@@ -6,3 +6,14 @@ export interface Project {
   UrlImage: string;
   UserCreatedId: string;
 }
+
+export interface Member {
+  Id: string;
+  Address: string;
+  FirstName: string;
+  LastName: string;
+  Gender: boolean;
+  RoleDescription: string;
+  RoleName: string;
+  UserName: string;
+}
