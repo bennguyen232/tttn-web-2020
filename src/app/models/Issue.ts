@@ -1,6 +1,3 @@
-import {ResultAccount} from './Account';
-import {Sprint} from './Another';
-
 export interface CreateIssueType {
   Summary: string;
   Note?: string;

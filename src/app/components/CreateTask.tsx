@@ -24,7 +24,7 @@ import {useForm, Controller} from 'react-hook-form';
 const CreateTask: FC = () => {
   const classes = useStyles();
   const global = useGlobalStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const {control, handleSubmit} = useForm();
 
   const handleOpen = () => {

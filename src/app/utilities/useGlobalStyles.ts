@@ -62,6 +62,11 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
       display: 'flex',
       justifyContent: 'flex-start',
     },
+    flexCenter: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     //shadow
     shadow1: {boxShadow: shadows[2]},
     // border
@@ -76,6 +81,19 @@ export const useGlobalStyles = makeStyles(({spacing, palette, shadows}: Theme) =
     },
     br1: {
       borderRight: `1px solid ${palette.grey[400]}`,
+    },
+    // custom html
+    customTxtArea: {
+      padding: spacing(1),
+      borderRadius: 4,
+      color: 'rgba(0, 0, 0, 0.87)',
+      cursor: 'text',
+      fontSize: '1rem',
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: 400,
+      lineHeight: '1.1876em',
+      letterSpacing: '0.00938em',
+      outline: 'none',
     },
   });
 });

@@ -1,4 +1,4 @@
-import React, {FC, ComponentType, useState} from 'react';
+import React, {FC, ComponentType, useState, useEffect} from 'react';
 import {
   makeStyles,
   createStyles,
@@ -13,6 +13,26 @@ import MenuLeft from '../components/MenuLeft';
 import {HeightWrapped} from '../../assets/constants';
 import {useLocation, Link} from 'react-router-dom';
 import {routersContentHome} from '../router/Routers';
+import {connect} from 'react-redux';
+import {selectors, RootState} from '../redux/Slices';
+import _ from 'lodash';
+
+const mapStateToProps = (state: RootState) => ({
+  globalsRedux: selectors.globals.select(state),
+});
+
+type ProjectNameProps = ReturnType<typeof mapStateToProps>;
+
+const ProjectNameFC: FC<ProjectNameProps> = (props) => {
+  const {globalsRedux} = props;
+  const {Projects, ProjectActiveId} = globalsRedux;
+  const projectActive = _.find(Projects, {Id: ProjectActiveId});
+  return (
+    <span style={{textTransform: 'capitalize'}}>{_.get(projectActive, 'Name', 'Project')}</span>
+  );
+};
+
+export const ProjectNameFCConnect = connect(mapStateToProps)(ProjectNameFC);
 
 export default (WrappedComponent: ComponentType<any>) => {
   const HocComponent: FC<any> = ({...props}) => {
@@ -30,7 +50,7 @@ export default (WrappedComponent: ComponentType<any>) => {
     };
 
     const location = useLocation();
-    React.useEffect(() => {
+    useEffect(() => {
       setPath(location.pathname);
     }, [location]);
 
@@ -50,7 +70,7 @@ export default (WrappedComponent: ComponentType<any>) => {
                   <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
                     <Link to="/">
                       <Typography color="textSecondary" variant="caption" component="span">
-                        Project Name
+                        <ProjectNameFCConnect />
                       </Typography>
                     </Link>
                     <Typography color="textPrimary" variant="caption" component="span">

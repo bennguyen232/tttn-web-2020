@@ -1,1 +1,3 @@
-export interface TypeIssue {}
+export interface TypeIssue {
+  Id: string;
+}

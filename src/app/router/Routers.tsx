@@ -7,7 +7,8 @@ import AllIssuesScreen from '../views/AllIssuesScreen';
 import OpenIssuesScreen from '../views/OpenIssuesScreen';
 import MyIssuesScreen from '../views/MyIssuesScreen';
 import SettingsScreen from '../views/SettingsScreen';
-import OverviewScreen from '../views/OverviewScreen';
+import SetupScreen from '../views/SetupScreen';
+import HomeScreen from 'app/views/HomeScreen';
 
 interface RouterConfig {
   [name: string]: {
@@ -19,11 +20,6 @@ interface RouterConfig {
 }
 
 export const routersContentHome: RouterConfig = {
-  infoProject: {
-    path: '/',
-    component: OverviewScreen,
-    name: 'Overview',
-  },
   allIssues: {
     path: '/issues',
     component: AllIssuesScreen,
@@ -48,13 +44,23 @@ export const routersContentHome: RouterConfig = {
 
 export const routers: RouterConfig = {
   home: {
-    children: routersContentHome,
+    path: '/',
+    component: HomeScreen,
     name: 'Home',
+  },
+  pageContent: {
+    children: routersContentHome,
+    name: 'Page Content',
   },
   signIn: {
     path: '/sign-in',
     component: SignInScreen,
     name: 'Sign In',
+  },
+  setup: {
+    path: '/setup',
+    component: SetupScreen,
+    name: 'Setup',
   },
 };
 

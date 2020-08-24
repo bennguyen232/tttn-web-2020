@@ -1,8 +1,9 @@
 import React, {FC, useState} from 'react';
-import {makeStyles, Theme, createStyles, Paper, Grid} from '@material-ui/core';
+import {makeStyles, Theme, createStyles, Paper, Grid, Typography} from '@material-ui/core';
 import {Link, useLocation} from 'react-router-dom';
 import {HeightWrapped} from '../../assets/constants';
 import {routersContentHome} from '../router/Routers';
+import {ProjectNameFCConnect} from '../hocs/withMenu';
 
 const MenuLeft: FC = () => {
   const classes = useStyles();
@@ -31,7 +32,9 @@ const MenuLeft: FC = () => {
     <Paper elevation={6} className={classes.container}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <h2>Project Name</h2>
+          <Typography variant="h4" component="h2">
+            <ProjectNameFCConnect />
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <ul className={classes.items}>{_renderItems()}</ul>
